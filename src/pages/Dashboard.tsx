@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className='mt-8 flex flex-row gap-2 h-full items-center mb-6'>
+      <div className='mt-6 flex flex-row gap-2 h-full items-center mb-6'>
         <HospitalIcon />
         <h2 className="text-3xl font-semibold text-black ">{hospitalData ? hospitalData.name : "All hospitals"}</h2>
       </div>
@@ -81,12 +81,12 @@ const Dashboard = () => {
         <>
           <h3 className="text-xl font-medium text-bodydark ml-1 mt-8">Hospitalizations</h3>
 
-          <div className="grid grid-cols-12 mt-2 gap-4 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+          <div className="grid grid-cols-12 gap-4 md:gap-6 mt-3 2xl:gap-7.5">
             <AreaHospitalizations data={hospitalData?.monthlyHospitalizations} />
             <PieDepartments data={hospitalData?.hospitalDepartments} />
           </div>
           <h3 className="text-xl font-medium text-bodydark ml-1 mt-8">Specialties</h3>
-          <div className="grid grid-cols-12 mt-2 gap-4 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+          <div className="grid grid-cols-12 gap-4 md:gap-6 mt-3 2xl:gap-7.5">
 
             <PieSpecialities data={hospitalData?.doctorSpecialties} />
             <BarSpecialtyRate data={hospitalData?.doctorSpecialties} />
@@ -100,7 +100,7 @@ const Dashboard = () => {
         </>
         :
         //  Dashboard for all hospitals
-        <div className="col-span-12 xl:col-span-18 mt-4">
+        <div className="col-span-12 xl:col-span-18 mt-8">
           <HospitalList data={data} />
         </div>
       }

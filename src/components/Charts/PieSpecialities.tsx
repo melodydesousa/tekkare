@@ -64,7 +64,7 @@ const PieSpecialities = ({ data }) => {
   const colors = ["#3c50e0", '#5dc8ff', "#8FD0EF", "#adafca", "#e1d8f8"];
 
   return (
-    <div className="sm:px-7.5 col-span-6 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default xl:col-span-4">
+    <div className="sm:px-7.5 col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default xl:col-span-4">
       <div className="mb-3 justify-between gap-4 sm:flex">
         <div>
           <h5 className="text-xl font-semibold text-black">
