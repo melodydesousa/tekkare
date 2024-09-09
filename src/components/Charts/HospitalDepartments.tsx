@@ -8,7 +8,7 @@ interface HospitalDepartmentsState {
 
 const HospitalDepartments = ({ data }) => {
   const [state, setState] = useState<HospitalDepartmentsState>({
-    series: data.map((department) => department.patientsPerDay),
+    series: data && data.map((department) => department.patientsPerDay),
   });
 
   const departmentLabels = data.map((department) => department.department); 
@@ -64,10 +64,10 @@ const HospitalDepartments = ({ data }) => {
   const colors = ["#6577F3", "#3c50e0", "#8FD0EF", "#0FADCF"];
 
   return (
-    <div className="sm:px-7.5 col-span-6 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+    <div className="sm:px-7.5 col-span-6 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default xl:col-span-4">
       <div className="mb-3 justify-between gap-4 sm:flex">
         <div>
-          <h5 className="text-xl font-semibold text-black dark:text-white">
+          <h5 className="text-xl font-semibold text-black">
           Number of patients per day 
           </h5>
           <h6>by department</h6>
@@ -90,11 +90,10 @@ const HospitalDepartments = ({ data }) => {
             <div className="flex w-full items-center">
               <span
                 className="mr-2 h-3 w-3 rounded-full"
-                style={{ backgroundColor: colors[index % colors.length] }} // Assign colors dynamically
+                style={{ backgroundColor: colors[index % colors.length] }}
               ></span>
-              <div className="flex flex-row gap-2 text-sm font-medium text-black dark:text-white">
-                <span>{department.department}</span>
-                <span>{department.patientsPerDay}</span>
+              <div className="flex flex-row gap-2 text-sm font-medium text-black">
+                <span>{department.department}: {department.patientsPerDay}</span>
               </div>
             </div>
           </div>

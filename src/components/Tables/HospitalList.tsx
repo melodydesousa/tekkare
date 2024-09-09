@@ -1,8 +1,9 @@
-const ClinicalTrials = ({ data }) => {
+const HospitalList = ({ data }) => {
+  console.log(data);
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black">
-        Clinical Trials
+      List
       </h4><div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
@@ -11,10 +12,10 @@ const ClinicalTrials = ({ data }) => {
                 Name
               </th>
               <th className="min-w-[150px] py-4 px-4 font-semibold text-black">
-                Start date
+                Location
               </th>
               <th className="min-w-[150px] py-4 px-4 font-semibold text-black">
-                Status
+                Satisfaction Rate
               </th>
               <th className="min-w-[150px] py-4 px-4 font-semibold text-black">
                 Total patients
@@ -31,25 +32,25 @@ const ClinicalTrials = ({ data }) => {
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4">
                   <p className="text-black">
-                    {item.startDate}
+                    {item.location}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4">
                   <p
                     className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${
-                      item.status === 'Terminé'
+                      item.overview.satisfactionRate.slice(0,2) > 85
                         ? 'bg-success text-success'
-                        : item.status === ''
+                        : item.overview.satisfactionRate < 70
                         ? 'bg-danger text-danger'
                         : 'bg-warning text-warning'
                     }`}
                   >
-                    {item.status}
+                    {item.overview.satisfactionRate}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4">
                   <p className="text-black">
-                    {item.totalPatients}
+                    {item.overview.totalPatients.toLocaleString()}
                   </p>
                 </td>
               </tr>
@@ -61,4 +62,4 @@ const ClinicalTrials = ({ data }) => {
   );
 };
 
-export default ClinicalTrials;
+export default HospitalList;

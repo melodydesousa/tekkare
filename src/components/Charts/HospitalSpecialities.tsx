@@ -64,10 +64,10 @@ const HospitalSpecialities = ({ data }) => {
   const colors = ["#3c50e0", '#5dc8ff', "#8FD0EF", "#adafca", "#e1d8f8"];
 
   return (
-    <div className="sm:px-7.5 col-span-6 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-4">
+    <div className="sm:px-7.5 col-span-6 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default xl:col-span-4">
       <div className="mb-3 justify-between gap-4 sm:flex">
         <div>
-          <h5 className="text-xl font-semibold text-black dark:text-white">
+          <h5 className="text-xl font-semibold text-black">
           Number of doctors 
           </h5>
           <h6>by specialty</h6>
@@ -90,11 +90,10 @@ const HospitalSpecialities = ({ data }) => {
             <div className="flex w-full items-center">
               <span
                 className="mr-2 h-3 w-3 rounded-full shrink-0"
-                style={{ backgroundColor: colors[index % colors.length] }} // Assign colors dynamically
+                style={{ backgroundColor: colors[index % colors.length] }}
               ></span>
-              <div className="flex flex-row w-full gap-2 text-sm font-medium text-black dark:text-white">
-                <span>{department.specialty}</span>
-                <span>{department.numberOfDoctors}</span>
+              <div className="flex flex-row w-full gap-2 text-sm font-medium text-black">
+                <span>{department.specialty}: {department.numberOfDoctors}</span>
               </div>
             </div>
           </div>

@@ -36,24 +36,6 @@ const Hospitalizations = ({ data }) => {
           show: false,
         },
       },
-      responsive: [
-        {
-          breakpoint: 1024,
-          options: {
-            chart: {
-              height: 300,
-            },
-          },
-        },
-        {
-          breakpoint: 1366,
-          options: {
-            chart: {
-              height: 350,
-            },
-          },
-        },
-      ],
       stroke: {
         width: [2, 2],
         curve: 'straight',
@@ -123,39 +105,38 @@ const Hospitalizations = ({ data }) => {
         ...prevState.options,
         xaxis: {
           ...prevState.xaxis,
-          categories: filter?.value === "0" 
-          ? data.map((d) => `${d.month} ${d.year.toString().slice(-2)}`) 
-          : data.slice(-filter.value).map((d) => `${d.month} ${d.year.toString().slice(-2)}`),
+          categories: filter?.value === "0"
+            ? data.map((d) => `${d.month} ${d.year.toString().slice(-2)}`)
+            : data.slice(-filter.value).map((d) => `${d.month} ${d.year.toString().slice(-2)}`),
         },
       },
     }));
   }, [data, filter]);
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
-      <div className="flex items-start justify-between gap-3 sm:flex-nowrap">
+    <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default sm:px-7.5 xl:col-span-8">
+      <div className="flex items-start justify-between gap-3 sm:flex-nowrap flex-col sm:flex-row">
         <div className=" w-full flex-wrap gap-3 sm:gap-5">
           <div className="flex min-w-47.5">
-            <h4 className="text-xl font-semibold text-black dark:text-white">
+            <h4 className="text-xl font-semibold text-black ">
               Monthly Hospitalizations</h4>
           </div>
         </div>
-        <div className="flex w-full justify-end">
-          <div className="gap-2 inline-flex items-center rounded-md bg-whiter p-1.5 dark:bg-meta-4">
+        <div className="sm:flex w-full justify-end">
+          <div className="gap-2 inline-flex items-center rounded-md bg-whiter p-1.5">
             <button
               onClick={() => setFilter({ value: "3" })}
-              className={`rounded ${filter.value === "3" ? 'bg-white shadow-card' : ''} py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark`}>
+              className={`rounded ${filter.value === "3" ? 'bg-white shadow-card' : ''} py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card`}>
               Last 3 months
             </button>
-            <button 
-            onClick={() => setFilter({ value: "12" })}
-              className={`rounded ${filter.value === "12" ? 'bg-white shadow-card' : ''} py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark`}>
-
+            <button
+              onClick={() => setFilter({ value: "12" })}
+              className={`rounded ${filter.value === "12" ? 'bg-white shadow-card' : ''} py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card`}>
               Last year
             </button>
             <button
-            onClick={() => setFilter({ value: "0" })}
-              className={`rounded ${filter.value === "0" ? 'bg-white shadow-card' : ''} py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card dark:bg-boxdark dark:text-white dark:hover:bg-boxdark`}>
+              onClick={() => setFilter({ value: "0" })}
+              className={`rounded ${filter.value === "0" ? 'bg-white shadow-card' : ''} py-1 px-3 text-xs font-medium text-black hover:bg-white hover:shadow-card`}>
 
               All time
             </button>

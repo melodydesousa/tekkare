@@ -15,12 +15,12 @@ const SpecialtyRate = ({ data }) => {
     series: [
       {
         name: "Rate",
-        data: data.map((specialty) => specialty.satisfactionRate  + "%"),
+        data: data.map((specialty) => specialty.satisfactionRate),
       },
     ],
   });
 
-  const specialtyLabels = data.map((specialty) => specialty.specialty);
+  const specialtyLabels = data.map((specialty) => specialty.specialty).sort();
 
   const options: ApexOptions = {
     colors: ['#3C50E0', '#80CAEE'],
@@ -78,6 +78,7 @@ const SpecialtyRate = ({ data }) => {
     },
   };
 
+
   useEffect(() => {
     setState({
       series: [
@@ -90,11 +91,11 @@ const SpecialtyRate = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default dark:border-strokedark dark:bg-boxdark xl:col-span-8">
+    <div className="col-span-12 rounded-sm border border-stroke bg-white p-7.5 shadow-default xl:col-span-8">
       <div className="mb-4 justify-between gap-4 sm:flex">
         <div>
-          <h4 className="text-xl font-semibold text-black dark:text-white">
-            Satisfaction rate
+          <h4 className="text-xl font-semibold text-black">
+            Satisfaction rate %
           </h4>
           <h5>per specialty</h5>
         </div>
