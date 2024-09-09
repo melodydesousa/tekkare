@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Logo from '../../images/logo/logo.svg';
+import Logo from '../../images/logo.svg';
 import { useData } from '../../context/DataContext';
 
 interface SidebarProps {
@@ -18,8 +18,6 @@ const Sidebar = ({ sidebarOpen }: SidebarProps) => {
     const res = data?.filter((h) => h.name.toLowerCase().includes(e.target.value.toLowerCase()))
     setSearchedHospital(res)
   }
-
-  console.log(searchedHospital)
 
   return (
     <aside

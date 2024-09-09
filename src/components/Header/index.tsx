@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-import LogoIcon from '../../images/logo/logo-icon.svg';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -49,11 +47,6 @@ const Header = (props: {
               </span>
             </span>
           </button>
-          {/* <!-- Hamburger Toggle BTN --> */}
-
-          <Link className="block flex-shrink-0 lg:hidden" to="/">
-            <img src={LogoIcon} alt="Logo" />
-          </Link>
         </div>
 
       
