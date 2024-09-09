@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const Hospitalizations = ({ data }) => {
+const AreaHospitalizations = ({ data }) => {
   const [filter, setFilter] = useState(
-    { value: '0' },
+    { value: '0' }, // 0: all time, 3: last 3 months, 12: last year
   );
 
   const [state, setState] = useState({
@@ -105,7 +105,7 @@ const Hospitalizations = ({ data }) => {
         ...prevState.options,
         xaxis: {
           ...prevState.xaxis,
-          categories: filter?.value === "0"
+          categories: filter?.value === "0" 
             ? data.map((d) => `${d.month} ${d.year.toString().slice(-2)}`)
             : data.slice(-filter.value).map((d) => `${d.month} ${d.year.toString().slice(-2)}`),
         },
@@ -158,4 +158,4 @@ const Hospitalizations = ({ data }) => {
   );
 };
 
-export default Hospitalizations;
+export default AreaHospitalizations;

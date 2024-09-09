@@ -6,7 +6,7 @@ interface HospitalSpecialitiesState {
   series: number[];
 }
 
-const HospitalSpecialities = ({ data }) => {
+const PieSpecialities = ({ data }) => {
   const [state, setState] = useState<HospitalSpecialitiesState>({
     series: data.map((specialty) => specialty.numberOfDoctors),
   });
@@ -103,4 +103,4 @@ const HospitalSpecialities = ({ data }) => {
   );
 };
 
-export default HospitalSpecialities;
+export default PieSpecialities;

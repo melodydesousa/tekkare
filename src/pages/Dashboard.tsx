@@ -3,10 +3,10 @@ import { useData } from '../context/DataContext'
 import { useParams } from 'react-router-dom';
 
 import CardDataStats from '../components/CardDataStats';
-import Hospitalizations from '../components/Charts/Hospitalizations';
-import HospitalDepartments from '../components/Charts/HospitalDepartments';
-import SpecialtyRate from '../components/Charts/SpecialtyRate';
-import HospitalSpecialities from '../components/Charts/HospitalSpecialities';
+import AreaHospitalizations from '../components/Charts/AreaHospitalizations';
+import PieDepartments from '../components/Charts/PieDepartments';
+import BarSpecialtyRate from '../components/Charts/BarSpecialtyRate';
+import PieSpecialities from '../components/Charts/PieSpecialities';
 import ClinicalTrials from '../components/Tables/ClinicalTrials';
 import HospitalList from '../components/Tables/HospitalList';
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   const [hospitalData, setHospitalData] = useState<Data | null>(null);
   const [overviewData, setOverviewData] = useState<any>(null);
-  
+
   useEffect(() => {
     if (data) {
       if (id) {
@@ -33,7 +33,7 @@ const Dashboard = () => {
         const totalNurses = data.reduce((acc, hospital) => acc + hospital.overview.numberOfNurses, 0)
         const totalTreatments = data.reduce((acc, hospital) => acc + hospital.overview.totalTreatments, 0)
         const totalPatients = data.reduce((acc, hospital) => acc + hospital.overview.totalPatients, 0)
-        
+
         setOverviewData({
           totalDoctors,
           totalNurses,
@@ -51,12 +51,14 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className='flex flex-row gap-2 h-full items-center mb-6'>
+      <div className='mt-8 flex flex-row gap-2 h-full items-center mb-6'>
         <HospitalIcon />
         <h2 className="text-3xl font-semibold text-black ">{hospitalData ? hospitalData.name : "All hospitals"}</h2>
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
 
+      {/* Overview stats */}
+      {hospitalData && <h3 className="text-xl font-medium text-bodydark ml-1 mb-2">Overview</h3>}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <CardDataStats title="Total doctors" total={hospitalData ? hospitalData?.overview.numberOfDoctors : overviewData.totalDoctors}>
           <DoctorIcon />
         </CardDataStats>
@@ -74,21 +76,34 @@ const Dashboard = () => {
         </CardDataStats>
       </div>
 
+      {/* Dashboard by hospital */}
       {hospitalData && id ?
-        <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-          <Hospitalizations data={hospitalData?.monthlyHospitalizations} />
-          <HospitalDepartments data={hospitalData?.hospitalDepartments} />
-          <HospitalSpecialities data={hospitalData?.doctorSpecialties} />
-          <SpecialtyRate data={hospitalData?.doctorSpecialties} />
-          <div className="col-span-12 xl:col-span-18">
-            <ClinicalTrials data={hospitalData?.clinicalTrials} />
+        <>
+          <h3 className="text-xl font-medium text-bodydark ml-1 mt-8">Hospitalizations</h3>
+
+          <div className="grid grid-cols-12 mt-2 gap-4 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+            <AreaHospitalizations data={hospitalData?.monthlyHospitalizations} />
+            <PieDepartments data={hospitalData?.hospitalDepartments} />
           </div>
-        </div>
+          <h3 className="text-xl font-medium text-bodydark ml-1 mt-8">Specialties</h3>
+          <div className="grid grid-cols-12 mt-2 gap-4 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
+
+            <PieSpecialities data={hospitalData?.doctorSpecialties} />
+            <BarSpecialtyRate data={hospitalData?.doctorSpecialties} />
+
+            <div className="col-span-12 xl:col-span-18">
+              <h3 className="text-xl font-medium text-bodydark ml-1 my-2">Clinical Trials</h3>
+
+              <ClinicalTrials data={hospitalData?.clinicalTrials} />
+            </div>
+          </div>
+        </>
         :
+        //  Dashboard for all hospitals
         <div className="col-span-12 xl:col-span-18 mt-4">
-            <HospitalList data={data} />
-          </div>
-        }
+          <HospitalList data={data} />
+        </div>
+      }
     </>
   );
 };

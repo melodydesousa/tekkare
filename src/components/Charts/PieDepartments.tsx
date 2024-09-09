@@ -6,7 +6,7 @@ interface HospitalDepartmentsState {
   series: number[];
 }
 
-const HospitalDepartments = ({ data }) => {
+const PieDepartments = ({ data }) => {
   const [state, setState] = useState<HospitalDepartmentsState>({
     series: data && data.map((department) => department.patientsPerDay),
   });
@@ -103,4 +103,4 @@ const HospitalDepartments = ({ data }) => {
   );
 };
 
-export default HospitalDepartments;
+export default PieDepartments;

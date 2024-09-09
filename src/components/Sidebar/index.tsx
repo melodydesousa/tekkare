@@ -9,7 +9,7 @@ interface SidebarProps {
   setSidebarOpen: (arg: boolean) => void;
 }
 
-const Sidebar = ({ sidebarOpen }: SidebarProps) => {
+const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const data = useData()
   const [searchedHospital, setSearchedHospital] = useState(data)
@@ -26,8 +26,8 @@ const Sidebar = ({ sidebarOpen }: SidebarProps) => {
       className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-[#2000ad] duration-300 ease-linear lg:static lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
-      <div className="flex items-center justify-between gap-2 px-10 mt-6 py-5.5 lg:py-6.5">
-          <NavLink to={'/'} ><img src={Logo} alt="Logo" /></NavLink>
+      <div className="flex items-center justify-between gap-2 px-10 mt-8 py-5.5 lg:py-6.5">
+        <NavLink onClick={() => setSidebarOpen(!sidebarOpen)} to={'/'} ><img src={Logo} alt="Logo" /></NavLink>
       </div>
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
@@ -37,10 +37,12 @@ const Sidebar = ({ sidebarOpen }: SidebarProps) => {
               <>
                 <ul className="mt-4 mb-5.5 flex flex-col gap-2.5">
                   <div className="hidden sm:block mb-4">
+
+                     {/* Search bar */}
                     <form onChange={(e) => handleSearch(e)}>
                       <div className="relative">
                         <button className="absolute left-0 px-2 top-1/2 -translate-y-1/2 py-2">
-                          <SearchIcon/>
+                          <SearchIcon />
                         </button>
 
                         <input
@@ -51,10 +53,13 @@ const Sidebar = ({ sidebarOpen }: SidebarProps) => {
                       </div>
                     </form>
                   </div>
+
+                  {/* Hospital results */}
                   {searchedHospital &&
                     searchedHospital.map((hospital) => (
                       <li key={hospital.id}>
                         <NavLink
+                          onClick={() => setSidebarOpen(!sidebarOpen)}
                           to={`/hospital/${hospital.id}`}
                           className={({ isActive }) =>
                             'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +

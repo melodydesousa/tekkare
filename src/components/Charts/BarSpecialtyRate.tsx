@@ -9,7 +9,7 @@ interface SpecialtyRateState {
   }[];
 }
 
-const SpecialtyRate = ({ data }) => {
+const BarSpecialtyRate = ({ data }) => {
 
   const [state, setState] = useState<SpecialtyRateState>({
     series: [
@@ -20,7 +20,7 @@ const SpecialtyRate = ({ data }) => {
     ],
   });
 
-  const specialtyLabels = data.map((specialty) => specialty.specialty).sort();
+  const specialtyLabels = data.map((item) => item.specialty).sort();
 
   const options: ApexOptions = {
     colors: ['#3C50E0', '#80CAEE'],
@@ -115,4 +115,4 @@ const SpecialtyRate = ({ data }) => {
   );
 };
 
-export default SpecialtyRate;
+export default BarSpecialtyRate;
