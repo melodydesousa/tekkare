@@ -78,3 +78,5 @@ Follow the steps below to set up and run the project locally.
     yarn start
     ```
 
+The application will be available at http://localhost:5173
+
