@@ -5,7 +5,7 @@ const Header = (props: {
 }) => {
   return (
       <>
-        <div className="flex items-center gap-2 sm:gap-4 p-2 lg:hidden">
+        <div className="flex items-center gap-2 sm:gap-4 p-2 lg:hidden mt-2">
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
             aria-controls="sidebar"

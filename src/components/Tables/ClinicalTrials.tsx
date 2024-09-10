@@ -1,6 +1,6 @@
 const ClinicalTrials = ({ data }) => {
   return (
-    <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default sm:px-7.5 xl:pb-1">
+    <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default sm:px-7.5 xl:pb-1 mb-4">
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>

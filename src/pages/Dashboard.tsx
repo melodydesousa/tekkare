@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className='mt-6 flex flex-row gap-2 h-full items-center mb-6'>
+      <div className='sm:my-6 flex flex-row gap-2 h-full items-center mb-6'>
         <HospitalIcon />
         <h2 className="text-3xl font-semibold text-black ">{hospitalData ? hospitalData.name : "All hospitals"}</h2>
       </div>
